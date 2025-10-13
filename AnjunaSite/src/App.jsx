@@ -1,9 +1,86 @@
 import "./App.css";
-import BG_Anjuna from "./assets/BG-Anjuna.png";
+
+// 1. Defina o novo componente de Workflow
+const WorkflowSection = () => {
+    // Dados do processo em um array para facilitar a manutenção
+    const processSteps = [
+        {
+            title: "Consultation",
+            description: "Schedule a consultation to discuss your business goals and digital marketing needs with our team."
+        },
+        {
+            title: "Strategy Development",
+            description: "Our team will develop a customized digital marketing strategy tailored to your business."
+        },
+        {
+            title: "Implementation",
+            description: "We will put the strategy into action and launch your digital marketing campaigns."
+        },
+        {
+            title: "Monitoring & Optimization",
+            description: "We continually monitor and optimize your campaigns to maximize results and ROI."
+        },
+        {
+            title: "Reporting & Analysis",
+            description: "We provide regular reports and analysis on campaign performance."
+        },
+    ];
+
+    return (
+        
+        <section id="about" className="workflow-section">
+            <h2 className="title">Our Process Workflow</h2>
+
+            <div className="workflow-content">
+                
+                {/* O container workflow-steps usa CSS Grid para posicionar 3 itens na coluna 1 e 2 itens na coluna 2 */}
+                <div className="workflow-steps">
+                    {/* A lista <ul> usa CSS Counters e os data-attributes para criar o visual do workflow */}
+                    <ul className="process-list">
+                        {processSteps.map((step, index) => (
+                            <li 
+                                key={index} 
+                                // data-step é crucial para o posicionamento e estilização no CSS
+                                data-step={index + 1} 
+                            >
+                                <div className="step-info">
+                                    <h3>{step.title}</h3>
+                                    <p>{step.description}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                
+                {/* Coluna da Direita (Ilustração) - Posicionada ao lado da lista pelo CSS Grid */}
+                <div className="workflow-illustration">
+                    {/* **SUBSTITUA ESTE SRC** pela sua imagem da ilustração! */}
+                    <img 
+                        src="placeholder-illustration.png" 
+                        alt="Ilustração do Fluxo de Trabalho"
+                        // O style é opcional, mas garante que a imagem não distorça
+                        style={{ width: '100%', maxWidth: '450px', height: 'auto' }}
+                    />
+                </div>
+
+            </div>
+        </section>
+    );
+};
+// Fim do novo componente de Workflow
+
 
 function App() {
   return (
     <>
+      <nav className="navbar">
+        <ul className="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
       <header>
         <div className="cabecalho">
           <h1 className="cabecalho_logo">
@@ -20,13 +97,17 @@ function App() {
             delivering cutting-edge products and services that drive growth and
             success.
           </p>
+          <div className="Conteiner_bg"></div>
         </div>
       </header>
       <main>
-        <h1 className="titulo_primario">Expertise and Innovation at the Service of the Future</h1>
+        <section id="home" className="home-section">
+        <h1 className="titulo_primario">Expertise e Inovação a Serviço do Futuro</h1>
         <p className="texto_primario">
-          In a world in constant evolution, anticipating challenges and seizing opportunities is crucial for sustained success. This is where our commitment comes to life. We combine deep knowledge and extensive experience in the technology sector to develop pioneering solutions.
+          Em um mundo em constante evolução, antecipar desafios e aproveitar oportunidades é crucial para o sucesso sustentado. É aqui que nosso compromisso ganha vida..
         </p>
+        <p className="texto_primario_seguinte">Combinamos conhecimento profundo e extensa experiência no setor de tecnologia para desenvolver soluções pioneiras. Nossa abordagem centrada no cliente garante que cada projeto seja personalizado para atender às necessidades específicas do seu negócio.</p>
+        </section>
         <div>
           <svg
             className="icone_coracao"
@@ -53,18 +134,22 @@ function App() {
             />
           </svg>
           <p className="texto_coracao">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            vulputate mi sit amet blandit porttitor. Sed tempor lacus posuere
-            sapien tristique feugiat. Pellentesque dignissim ligula odio, at
-            ornare purus aliquam et. Etiam tristique ut tortor aliquet
-            efficitur. Aliquam dictum aliquam lectus quis semper. Nullam
-            elementum mollis enim vel blandit. Vestibulum ut ante at orci
-            facilisis dignissim. Phasellus placerat mattis lobortis. Praesent
-            malesuada ligula vel risus porta auctor. Nunc tristique hendrerit
-            felis non eleifend. Duis nulla tellus, lacinia vitae dolor vel,
-            tristique porttitor mi.
+            A Anjuna transforma a gestão em saúde, permitindo um diálogo direto com os dados da sua operação. Usando IA e as bases HVBC, mapeamos processos e riscos em um mapa completo do ciclo de cuidados.
+
+            Com nossa plataforma, você pode conversar com os dados em linguagem natural, extraindo insights valiosos. A interface é simples e intuitiva, apresentando todos os passos e procedimentos de forma visual para garantir total consciência situacional à equipe. Conecte todos os pontos do processo e tenha os desfechos corretamente registrados, medidos e acessíveis.
+            
           </p>
         </div>
+        <section id="services" className="services-section">
+        <div className="titulo_servico">
+          <div>
+            <h2 className="titulo_secundario">Our Service</h2>
+            <p className="texto_primario">
+              We offer a range of services designed to meet the unique needs of each client. From custom software development to IT consulting and cloud solutions, we provide comprehensive support to help businesses navigate the complexities of the digital landscape.
+            </p>
+          </div>
+        </div>
+        </section>
         <div className="container">
           <div className="card">
             <div className="icon-circle">
@@ -91,7 +176,6 @@ function App() {
               Saiba mais
             </button>
           </div>
-
           <div className="card">
             <div className="icon-circle">
               <svg viewBox="0 0 24 24" fill="currentColor" className="icon-svg">
@@ -118,6 +202,13 @@ function App() {
             </button>
           </div>
         </div>
+        
+        {/* 2. Inclua o novo componente de Workflow AQUI */}
+        <WorkflowSection />
+        {/* Fim do componente de Workflow */}
+        <footer className="footer">
+          <p className="ftexto">© 2024 Anjuna Tech. All rights reserved.</p>
+        </footer>
       </main>
     </>
   );

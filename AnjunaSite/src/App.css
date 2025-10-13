@@ -63,6 +63,17 @@ h1{
             width: 40%;
             margin-bottom: 100px;
             text-align: center;
+
+}
+.texto_primario_seguinte{
+            font-family: 'Gabarito', sans-serif;
+            font-size: 1.25rem;
+            color: #4f4f4f;
+            margin-left: 30%;
+            margin-top: 10px;
+            width: 40%;
+            margin-bottom: 100px;
+            text-align: left;
 }
 .icone_coracao{
             color: #36bfb1;
@@ -86,8 +97,8 @@ h1{
 .container {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            max-width: 1200px;
+            gap: 1rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -96,50 +107,50 @@ h1{
             flex-direction: column;
             align-items: center;
             text-align: center;
-            background-color: #fff;
+            background-color: #daf8f4;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px #1B6C64;
             flex: 1;
             min-width: 220px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgb(0, 255, 115);
-        }
+                .card:hover {
+                    transform: translateY(-5px);
+                }
 
-        .icon-circle {
-            width: 100px;
-            height: 100px;
-            border: 2px solid #5d9f8d;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+                .icon-circle {
+                    width: 100px;
+                    height: 100px;
+                    border: 2px solid #5d9f8d;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
 
-        .icon-svg {
-            width: 60px;
-            height: 60px;
-            color: #5d9f8d;
-        }
+                .icon-svg {
+                    width: 60px;
+                    height: 60px;
+                    color: #5d9f8d;
+                }
 
-        .card h3 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-            margin: 0 0 10px 0;
-        }
+                .card h3 {
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: #333;
+                    margin: 0 0 10px 0;
+                }
 
-        .card p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #777;
-            margin: 0 0 20px 0;
-        }
+                .card p {
+                    font-size: 14px;
+                    line-height: 1.6;
+                    color: #777;
+                    margin: 0 0 20px 0;
+                }
+                .card:hover {
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
          .button {
             background-color: #5d9f8d;
             color: white;
@@ -157,3 +168,247 @@ h1{
         .button:hover {
             background-color: #4a8276;
         }
+        .Conteiner_bg{
+                    background-color: rgb(255, 255, 255);
+                    width: 730px;
+                    height: 420px;
+                    padding: 200px 600px;
+                    margin-left: 900px;
+                    margin-top: -300px;
+
+                }
+        .footer{
+                    background-color: #1B6C64;
+                    text-align: center;
+                    padding: 20px 0;
+                    margin-top: 50px;
+                }
+        .ftexto{
+                    font-family: 'Gabarito', sans-serif;
+                    color: white;
+                    font-size: 1rem;
+                }
+        .navbar {
+                    background-color: #021604;
+                    padding: 10px 20px;
+                    flex-direction: row;
+                }
+        .nav-links {
+                    list-style: none;
+                    display: flex;
+                    gap: 30px;
+                    margin-left: 40%;
+                }
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Gabarito', sans-serif;
+            font-size: 1.25rem;
+        }
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+        .nav-links li {
+            margin: 0 10px;
+        }  
+        .nav-links li a {
+            transition: color 0.3s ease;
+        }
+        .nav-links li a:hover {
+            color: #36bfb1;
+        }
+        .titulo_secundario{
+            font-family: 'Gabarito', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #1B6C64;
+            margin-top: 64px;
+        }
+        /* --- CSS para a seção Workflow (Adicione ao seu App.css) --- */
+
+/* 1. Configurações Globais da Seção */
+.workflow-section {
+    max-width: 1200px;
+    margin: 80px auto; /* Adiciona um espaço maior em cima e embaixo */
+    padding: 40px;
+    /* font-family: sans-serif; - Use a fonte do seu projeto se não estiver globalmente */
+}
+.title {
+    font-size: 2.5em;
+    color: #1B6C64;
+    margin-top: 0;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* 2. Layout Principal: Grid de 2 Colunas */
+.workflow-content {
+    /* Define a área onde a lista e a ilustração se encontram */
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    align-items: flex-start; 
+}
+
+/* 3. Posicionamento da Ilustração */
+.workflow-illustration {
+    /* Posiciona a ilustração na coluna 2 do Grid principal */
+    grid-column: 2 / 3;
+    /* Faz a ilustração subir e ficar ao lado do começo da lista */
+    grid-row: 1 / 2; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.workflow-illustration img {
+    /* Ajuste o tamanho da sua imagem aqui */
+    width: 100%; 
+    max-width: 450px; 
+    height: auto;
+}
+
+/* 4. Layout dos Passos (A Mágica do Grid e da Lista) */
+.workflow-steps {
+    /* Faz o container da lista cobrir as duas colunas do grid principal */
+    grid-column: 1 / 3;
+    counter-reset: step-counter; /* Inicia a contagem */
+}
+
+.process-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* A lista em si se torna um Grid de 2 colunas para posicionar 3+2 itens */
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    /* 3 linhas garantem o espaço vertical para os 3 primeiros passos */
+    grid-template-rows: repeat(3, auto); 
+}
+
+.process-list li {
+    position: relative;
+    padding: 0 0 40px 60px; /* Espaço para o número e a linha vertical */
+}
+
+/* Posiciona os 3 primeiros passos na coluna 1 do Grid interno */
+.process-list li:nth-child(-n+3) {
+    grid-column: 1 / 2;
+}
+
+/* Posiciona os passos 4 e 5 na coluna 2 do Grid interno */
+.process-list li[data-step="4"], 
+.process-list li[data-step="5"] {
+    grid-column: 2 / 3;
+    padding: 0 0 40px 60px;
+}
+
+/* Posiciona o passo 4 na Linha 1 do Grid interno (ao lado da ilustração) */
+.process-list li[data-step="4"] {
+    grid-row: 1 / 2;
+}
+
+/* Posiciona o passo 5 na Linha 2 do Grid interno */
+.process-list li[data-step="5"] {
+    grid-row: 2 / 3;
+}
+
+
+/* 5. Estilização dos Círculos (Número) */
+.process-list li::after {
+    /* Pega o número sequencial */
+    counter-increment: step-counter; 
+    content: counter(step-counter); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px; 
+    text-align: center;
+    border-radius: 50%; 
+    background-color: #ffffff; 
+    font-weight: bold;
+    z-index: 1; 
+    
+    /* Cores Padrão (Passos 1, 2, 3): Rosa */
+    border: 2px solid #1B6C64; 
+    color: #1B6C64;
+}
+
+/* Cores Alternativas (Passos 4, 5): Roxo */
+.process-list li[data-step="4"]::after,
+.process-list li[data-step="5"]::after {
+    border-color: #1B6C64; 
+    color: #1B6C64;
+}
+
+
+/* 6. Linha Vertical Tracejada (::before) */
+.process-list li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px; 
+    width: 2px;
+    height: 100%;
+    /* Linha tracejada usando gradiente */
+    background: repeating-linear-gradient(
+        to bottom,
+        #ddd, 
+        #ddd 5px,
+        transparent 5px,
+        transparent 10px
+    );
+}
+
+/* Remove a linha nos últimos itens e nos itens da coluna da direita */
+.process-list li:nth-child(3)::before, /* Último da coluna 1 (Passo 3) */
+.process-list li[data-step="4"]::before, /* Item da coluna 2 */
+.process-list li[data-step="5"]::before { /* Item da coluna 2 */
+    display: none; 
+}
+
+
+/* 7. Estilização do Texto */
+.step-info h3 {
+    font-size: 1.2em;
+    color: #1B6C64;
+    margin: 0 0 5px 0;
+}
+
+.step-info p {
+    color: #2c2c2c;
+    margin: 0;
+}
+
+/* 8. Media Query para Responsividade (Mobile) */
+@media (max-width: 768px) {
+    .workflow-content,
+    .process-list {
+        /* Muda o Grid para uma coluna em telas menores */
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-illustration {
+        /* Coloca a ilustração em uma posição que não interfira no fluxo vertical */
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        margin-top: 20px;
+    }
+
+    /* Todos os itens da lista voltam para a coluna 1 e o fluxo vertical natural */
+    .process-list li {
+        grid-column: 1 / 2 !important;
+        grid-row: unset !important;
+    }
+    
+    /* A linha vertical reaparece em todos os passos, exceto no último item geral */
+    .process-list li::before {
+        display: block;
+    }
+
+    .process-list li:last-child::before {
+        display: none;
+    }
+}

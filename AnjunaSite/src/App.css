@@ -168,15 +168,6 @@ h1{
         .button:hover {
             background-color: #4a8276;
         }
-        .Conteiner_bg{
-                    background-color: rgb(255, 255, 255);
-                    width: 730px;
-                    height: 420px;
-                    padding: 200px 600px;
-                    margin-left: 900px;
-                    margin-top: -300px;
-
-                }
         .footer{
                     background-color: #1B6C64;
                     text-align: center;

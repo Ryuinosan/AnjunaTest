@@ -1,8 +1,9 @@
 import "./App.css";
+import React, { useState } from 'react';
+import { useFormulario } from './hooks/useFormulario'; // Importe o hook
 
-// 1. Defina o novo componente de Workflow
+// 1. Componente WorkflowSection (separado)
 const WorkflowSection = () => {
-    // Dados do processo em um array para facilitar a manutenção
     const processSteps = [
         {
             title: "Consultation",
@@ -27,22 +28,13 @@ const WorkflowSection = () => {
     ];
 
     return (
-        
         <section id="about" className="workflow-section">
             <h2 className="title">Our Process Workflow</h2>
-
             <div className="workflow-content">
-                
-                {/* O container workflow-steps usa CSS Grid para posicionar 3 itens na coluna 1 e 2 itens na coluna 2 */}
                 <div className="workflow-steps">
-                    {/* A lista <ul> usa CSS Counters e os data-attributes para criar o visual do workflow */}
                     <ul className="process-list">
                         {processSteps.map((step, index) => (
-                            <li 
-                                key={index} 
-                                // data-step é crucial para o posicionamento e estilização no CSS
-                                data-step={index + 1} 
-                            >
+                            <li key={index} data-step={index + 1}>
                                 <div className="step-info">
                                     <h3>{step.title}</h3>
                                     <p>{step.description}</p>
@@ -51,26 +43,52 @@ const WorkflowSection = () => {
                         ))}
                     </ul>
                 </div>
-                
-                {/* Coluna da Direita (Ilustração) - Posicionada ao lado da lista pelo CSS Grid */}
                 <div className="workflow-illustration">
-                    {/* **SUBSTITUA ESTE SRC** pela sua imagem da ilustração! */}
                     <img 
                         src="placeholder-illustration.png" 
                         alt="Ilustração do Fluxo de Trabalho"
-                        // O style é opcional, mas garante que a imagem não distorça
                         style={{ width: '100%', maxWidth: '450px', height: 'auto' }}
                     />
                 </div>
-
             </div>
         </section>
     );
 };
-// Fim do novo componente de Workflow
+// FIM do WorkflowSection
 
-
+// 2. Componente App (separado - NOVO COM FORMULÁRIO INTEGRADO)
 function App() {
+  // === ESTADOS DO FORMULÁRIO ===
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [empresa, setEmpresa] = useState('');
+  const [mensagem, setMensagem] = useState('');
+
+  // === USE O HOOK PERSONALIZADO ===
+  const { loading, resultado, enviarFormulario } = useFormulario();
+
+  // === FUNÇÃO DE ENVIO DO FORMULÁRIO ===
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const dados = { 
+      nome, 
+      email, 
+      empresa, 
+      mensagem 
+    };
+
+    const sucesso = await enviarFormulario(dados);
+
+    if (sucesso) {
+      // Limpa o formulário após envio bem-sucedido
+      setNome('');
+      setEmail('');
+      setEmpresa('');
+      setMensagem('');
+    }
+  };
+
   return (
     <>
       <nav className="navbar">
@@ -78,9 +96,10 @@ function App() {
           <li><a href="#home">Home</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#name">Contact</a></li>
         </ul>
       </nav>
+      
       <header>
         <div className="cabecalho">
           <h1 className="cabecalho_logo">
@@ -100,14 +119,16 @@ function App() {
           <div className="Conteiner_bg"></div>
         </div>
       </header>
+      
       <main>
         <section id="home" className="home-section">
-        <h1 className="titulo_primario">Expertise e Inovação a Serviço do Futuro</h1>
-        <p className="texto_primario">
-          Em um mundo em constante evolução, antecipar desafios e aproveitar oportunidades é crucial para o sucesso sustentado. É aqui que nosso compromisso ganha vida..
-        </p>
-        <p className="texto_primario_seguinte">Combinamos conhecimento profundo e extensa experiência no setor de tecnologia para desenvolver soluções pioneiras. Nossa abordagem centrada no cliente garante que cada projeto seja personalizado para atender às necessidades específicas do seu negócio.</p>
+          <h1 className="titulo_primario">Expertise e Inovação a Serviço do Futuro</h1>
+          <p className="texto_primario">
+            Em um mundo em constante evolução, antecipar desafios e aproveitar oportunidades é crucial para o sucesso sustentado. É aqui que nosso compromisso ganha vida..
+          </p>
+          <p className="texto_primario_seguinte">Combinamos conhecimento profundo e extensa experiência no setor de tecnologia para desenvolver soluções pioneiras. Nossa abordagem centrada no cliente garante que cada projeto seja personalizado para atender às necessidades específicas do seu negócio.</p>
         </section>
+        
         <div>
           <svg
             className="icone_coracao"
@@ -134,27 +155,30 @@ function App() {
             />
           </svg>
           <p className="texto_coracao">
-            A Anjuna transforma a gestão em saúde, permitindo um diálogo direto com os dados da sua operação. Usando IA e as bases HVBC, mapeamos processos e riscos em um mapa completo do ciclo de cuidados.
+            A Anjuna Tech revoluciona a análise de HFMEA's (Healthcare Failure Mode and Effects Analysis) através de inteligência artificial e visualização por grafos. Nossa plataforma permite identificar, priorizar e mitigar riscos em processos de saúde com precisão nunca antes alcançada.
 
-            Com nossa plataforma, você pode conversar com os dados em linguagem natural, extraindo insights valiosos. A interface é simples e intuitiva, apresentando todos os passos e procedimentos de forma visual para garantir total consciência situacional à equipe. Conecte todos os pontos do processo e tenha os desfechos corretamente registrados, medidos e acessíveis.
-            
+            Com nossa tecnologia, você pode analisar falhas potenciais em tempo real, visualizar interconexões complexas entre processos e tomar decisões baseadas em dados preditivos. A interface intuitiva apresenta todos os modos de falha e efeitos em gráficos interativos, garantindo total compreensão situacional para toda a equipe.
+
+            Conectamos todos os pontos do processo assistencial e transformamos dados complexos em insights acionáveis, medidos e acessíveis.
           </p>
         </div>
+        
         <section id="services" className="services-section">
-        <div className="titulo_servico">
-          <div>
-            <h2 className="titulo_secundario">Our Service</h2>
-            <p className="texto_primario">
-              We offer a range of services designed to meet the unique needs of each client. From custom software development to IT consulting and cloud solutions, we provide comprehensive support to help businesses navigate the complexities of the digital landscape.
-            </p>
+          <div className="titulo_servico">
+            <div>
+              <h2 className="titulo_secundario">Nossos Serviços</h2>
+              <p className="texto_primario">
+                Oferecemos soluções especializadas em análise de riscos para organizações de saúde. Desde a leitura automatizada de HFMEA's até a visualização interativa de processos, fornecemos suporte completo para ajudar instituições a navegar pelas complexidades da segurança do paciente.
+              </p>
+            </div>
           </div>
-        </div>
         </section>
+        
         <div className="container">
           <div className="card">
             <div className="icon-circle">
               <svg viewBox="0 0 24 24" fill="currentColor" className="icon-svg">
-                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm0 8c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3-1.346 3-3 3zM12 8c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zM12 9c-1.654 0-3 1.346-3 3s1.346 3 3 3 3-1.346 3-3-1.346-3-3-3zM12 10c-1.103 0-2 .897-2 2s.897 2 2 2 2-.897 2-2-.897-2-2-2z"></path>
+                <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM12 7c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"></path>
               </svg>
             </div>
             <h3>Lorem ipsum</h3>
@@ -176,6 +200,7 @@ function App() {
               Saiba mais
             </button>
           </div>
+          
           <div className="card">
             <div className="icon-circle">
               <svg viewBox="0 0 24 24" fill="currentColor" className="icon-svg">
@@ -203,11 +228,96 @@ function App() {
           </div>
         </div>
         
-        {/* 2. Inclua o novo componente de Workflow AQUI */}
+        {/* Inclua o componente de Workflow */}
         <WorkflowSection />
-        {/* Fim do componente de Workflow */}
+        
+        {/* FOOTER COM FORMULÁRIO ATUALIZADO */}
         <footer className="footer">
-          <p className="ftexto">© 2024 Anjuna Tech. All rights reserved.</p>
+          <div className="formulario">
+            <h1>Entre em contato</h1>
+            <p className="texto_footer">
+              Tem uma pergunta ou quer iniciar um projeto? Nos envie uma mensagem!
+            </p>
+            
+            {/* FORMULÁRIO COM INTEGRAÇÃO DA API */}
+            <form onSubmit={handleSubmit}>
+              <div className="form_group">
+                <label htmlFor="nome">Nome</label>
+                <input 
+                  type="text" 
+                  id="nome" 
+                  name="nome"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  required
+                  disabled={loading}
+                />
+              </div>
+              
+              <div className="form_group">
+                <label htmlFor="email">Email</label>
+                <input 
+                  type="email"
+                  id="email" 
+                  name="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  disabled={loading}
+                />
+              </div>
+              
+              <div className="form_group">
+                <label htmlFor="empresa">Empresa</label>
+                <input 
+                  type="text"
+                  id="empresa" 
+                  name="empresa" 
+                  value={empresa}
+                  onChange={(e) => setEmpresa(e.target.value)}
+                  required
+                  disabled={loading}
+                />
+              </div>
+              
+              <div className="form_group">
+                <label htmlFor="mensagem">Mensagem</label>
+                <textarea 
+                  id="mensagem" 
+                  name="mensagem" 
+                  value={mensagem}
+                  onChange={(e) => setMensagem(e.target.value)}
+                  required
+                  disabled={loading}
+                  rows="4"
+                />
+              </div>
+              
+              <button 
+                className="form_send" 
+                type="submit" 
+                disabled={loading}
+              >
+                {loading ? 'Enviando...' : 'Enviar'}
+              </button>
+            </form>
+
+            {/* MENSAGEM DE RESULTADO */}
+            {resultado.mensagem && (
+              <div 
+                style={{ 
+                  marginTop: '1rem',
+                  padding: '0.5rem',
+                  borderRadius: '4px',
+                  color: resultado.tipo === 'sucesso' ? 'green' : 'red',
+                  border: `1px solid ${resultado.tipo === 'sucesso' ? 'green' : 'red'}`,
+                  backgroundColor: resultado.tipo === 'sucesso' ? '#f0fff0' : '#fff0f0'
+                }}
+              >
+                {resultado.mensagem}
+              </div>
+            )}
+          </div>
         </footer>
       </main>
     </>

@@ -15,6 +15,49 @@ h1{
             font-size: 3rem;
             color: white;
 }
+label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-family: 'Gabarito', sans-serif;
+            font-size: 1rem;
+}
+ .navbar {
+                    background-color: #021604;
+                    padding: 10px 20px;
+                    flex-direction: row;
+                }
+        .nav-links {
+                    list-style: none;
+                    display: flex;
+                    gap: 30px;
+                    margin-left: 40%;
+                }
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Gabarito', sans-serif;
+            font-size: 1.25rem;
+        }
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+        .nav-links li {
+            margin: 0 10px;
+        }  
+        .nav-links li a {
+            transition: color 0.3s ease;
+        }
+        .nav-links li a:hover {
+            color: #36bfb1;
+        }
+        .titulo_secundario{
+            font-family: 'Gabarito', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #1B6C64;
+            margin-top: 64px;
+        }
 .cabecalho{
             display: flex;
             flex-direction: column;
@@ -93,6 +136,8 @@ h1{
             border: solid 5px #1B6C64;
             border-radius: 10px;
             padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            
 }
 .container {
             display: flex;
@@ -151,8 +196,69 @@ h1{
                 .card:hover {
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 }
-         .button {
-            background-color: #5d9f8d;
+                .button {
+                    background-color: #5d9f8d;
+                    color: white;
+                    padding: 12px 25px;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    font-weight: 600;
+                    transition: background-color 0.3s ease;
+                    cursor: pointer;
+                    border: none;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 14px;
+        }
+
+        .button:hover {
+            background-color: #4a8276;
+}
+        .footer{
+            background-color: #1B6C64;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+                }
+        .ftexto{
+                font-family: 'Gabarito', sans-serif;
+                color: white;
+                 font-size: 1rem;
+                }
+
+        .formulario{
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                flex-direction: column;
+                font-family: gabarito, sans-serif;
+                color: white;
+                gap: 2rem;
+                max-width: 600px;
+                margin:50px auto;
+                }
+        .form_group{
+            display: flex;
+            margin-bottom: 25px;
+            align-items: center;
+            flex-direction: column;
+            gap: 3px;
+                }
+        label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    .form_send{
+            width: 100%;
+            background-color: #21756f;
             color: white;
             padding: 12px 25px;
             text-decoration: none;
@@ -161,60 +267,28 @@ h1{
             transition: background-color 0.3s ease;
             cursor: pointer;
             border: none;
-            font-family: 'Poppins', sans-serif;
+            font-family: gabarito, sans-serif;
             font-size: 14px;
         }
-
-        .button:hover {
-            background-color: #4a8276;
+        .form_send:hover {
+            background-color: #1b4f4b;
         }
-        .footer{
-                    background-color: #1B6C64;
-                    text-align: center;
-                    padding: 20px 0;
-                    margin-top: 50px;
-                }
-        .ftexto{
-                    font-family: 'Gabarito', sans-serif;
-                    color: white;
-                    font-size: 1rem;
-                }
-        .navbar {
-                    background-color: #021604;
-                    padding: 10px 20px;
-                    flex-direction: row;
-                }
-        .nav-links {
-                    list-style: none;
-                    display: flex;
-                    gap: 30px;
-                    margin-left: 40%;
-                }
-        .nav-links li a {
+        .form_send:active {
+            background-color: #2da39b;
+        }
+    .texto_footer{
+            font-family: 'Gabarito', sans-serif;
+            font-size: 1rem;
             color: white;
-            text-decoration: none;
-            font-family: 'Gabarito', sans-serif;
-            font-size: 1.25rem;
+            margin-top: 10px;
+            font-weight: 700;
         }
-        .nav-links li a:hover {
-            text-decoration: underline;
+        #mensagem{
+            width: 100%;
+            height: 100px;
+            resize: none;
         }
-        .nav-links li {
-            margin: 0 10px;
-        }  
-        .nav-links li a {
-            transition: color 0.3s ease;
-        }
-        .nav-links li a:hover {
-            color: #36bfb1;
-        }
-        .titulo_secundario{
-            font-family: 'Gabarito', sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            color: #1B6C64;
-            margin-top: 64px;
-        }
+       
         /* --- CSS para a seção Workflow (Adicione ao seu App.css) --- */
 
 /* 1. Configurações Globais da Seção */

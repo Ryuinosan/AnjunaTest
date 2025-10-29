@@ -1,0 +1,64 @@
+# Nome do workflow que aparecerá na aba "Actions" do GitHub
+name: Deploy to VM
+
+# Gatilho: rodar este workflow a cada push na branch 'main'
+on:
+  push:
+    branches:
+      - main
+
+# Tarefas que serão executadas
+jobs:
+  deploy:
+    # O ambiente de execução será o Ubuntu mais recente
+    runs-on: ubuntu-latest
+
+    # Passos da automação
+    steps:
+      # 1. Configura a chave SSH para que o runner possa acessar a VM
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+
+      # 2. Adiciona o IP da VM aos hosts conhecidos para evitar prompts de confirmação
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # 3. Conecta na VM e executa os comandos de deploy
+      - name: Connect to VM and Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Navega para a pasta correta do projeto
+            cd ~/testes_codigo/AnjunaTest/AnjunaSite
+
+            # Baixa as últimas alterações da branch main
+            echo ">>> Puxando as últimas alterações..."
+            git pull origin main
+
+            # Reconstrói a imagem Docker com o novo código
+            echo ">>> Reconstruindo a imagem Docker..."
+            docker build -t anjuna-site .
+
+            # Para o container atual, se estiver rodando
+            echo ">>> Parando o container antigo..."
+            docker stop anjuna-container
+
+            # Remove o container antigo
+            echo ">>> Removendo o container antigo..."
+            docker rm anjuna-container
+
+            # Inicia um novo container com a imagem atualizada
+            echo ">>> Iniciando o novo container..."
+            docker run -d -p 8000:80 --name anjuna-container --restart always anjuna-site
+
+            # (Opcional) Limpa imagens Docker antigas e não utilizadas
+            echo ">>> Limpando imagens antigas..."
+            docker image prune -f
+
+            echo ">>> Deploy concluído com sucesso!"
